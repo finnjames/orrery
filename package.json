@@ -1,0 +1,22 @@
+{
+  "name": "orrery",
+  "version": "1.0.0",
+  "description": "planetarium",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/radiolevity/orrery.git"
+  },
+  "author": "Finn James",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/radiolevity/orrery/issues"
+  },
+  "homepage": "https://github.com/radiolevity/orrery#readme",
+  "dependencies": {
+    "bulma": "^0.9.1"
+  }
+}
