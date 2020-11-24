@@ -3,22 +3,122 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+  
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+  
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyDsxbQk89gAmQiwAaaiqyQQmf_1x3OQqIk",
+      authDomain: "radio-orrery.firebaseapp.com",
+      databaseURL: "https://radio-orrery.firebaseio.com",
+      projectId: "radio-orrery",
+      storageBucket: "radio-orrery.appspot.com",
+      messagingSenderId: "924110178948",
+      appId: "1:924110178948:web:3781a4c6d2fce979ad50d1"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  
+  <script src="https://unpkg.com/opencage-api-client"></script>
+  
+  <script src="app.js" defer></script>
+  
   <link href="bulma.min.css" rel="stylesheet"/>
+  <link href="all.css" rel="stylesheet"/> <!-- fontawesome -->
   <link href="main.css" rel="stylesheet"/>
   <title>Orrery - Finn James</title>
+  
 </head>
 <body>
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="/__/firebase/8.1.1/firebase-app.js"></script>
   
-  <!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+  <canvas id="stars" width="512" height="512" ></canvas>
   
-  <!-- Initialize Firebase -->
-  <script src="/__/firebase/init.js?useEmulator=true"></script>
-  <script src="script.js" type="module"></script>
   
-  <h1 class="title">Orrery</h1>
-  <canvas id="stars" width="512" height="512" ></canvas> 
+  <section id="hud">
+    <div id="control_bar" class="hud_element">
+      <section id="signed_out">
+        <button id="sign_in_control_button" class="control_button"><i class="fas fa-sign-in-alt"></i></button>
+      </section>
+      
+      <section id="signed_in" class="is-hidden">
+        <button id="user_details_control_button" class="control_button"><i class="fas fa-address-book fa-flip-horizontal"></i></button>
+      </section>
+      
+      <button id="location_control_button" class="control_button"><i class="fas fa-globe-europe"></i></button>
+      <button id="info_control_button" class="control_button"><i class="fas fa-info-circle"></i></button>
+      
+    </div>
+    <div class="hud_element">
+      <div id="local_time">09:00:00 EST</div>
+    </div>
+  </section>
   
+  <section id="sign_in_modal" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Create Account / Sign In</p>
+        <button id="close_sign_in_modal" class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control">
+            <input id="email_input" class="input" type="email" placeholder="alovelace@gmail.com">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control">
+            <input id="password_input" class="input" type="password">
+          </div>
+        </div>
+      </section>
+      <footer class="modal-card-foot">
+        <button id="create_account_button" class="button is-success">Create account</button>
+        <button id="sign_in_button" class="button">Sign in</button>
+      </footer>
+    </div>
+  </div>
+</section>
+
+<section id="user_details_modal" class="modal is-active">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Favorite Locations</p>
+      <button id="close_user_details_modal" class="delete" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+      <div id="user_details"></div>
+    </section>
+    <footer class="modal-card-foot">
+      <button id="sign_out_button" class="button">Sign out</button>
+    </footer>
+  </div>
+</div>
+</section>
+
+<section id="locations_modal">
+  <div class="field">
+    <label class="label">Place</label>
+    <div class="control">
+      <input id="place_input" class="input" type="text">
+    </div>
+  </div>
+  
+  <button id="add_favorite_location_button">Add favorite location</button>
+  
+  <ul id="favorite_locations"></ul>
+  
+</section>
+
+
 </body>
 </html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="/__/firebase/8.1.1/firebase-app.js"></script>
+  
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script defer src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+
+  
+  <!-- Initialize Firebase -->
+  <script src="/__/firebase/init.js"></script>
+
+  <script src="hyg.js" ></script>
+  <script src="script.js" type="module"></script>
+
+  <!-- <link href="bulma.min.css" rel="stylesheet"/> -->
+  <link href="all.css" rel="stylesheet"/> <!-- fontawesome -->
+  <link href="main.css" rel="stylesheet"/>
+  <title>Orrery - Finn James</title>
+</head>
+
+<body>
+  
+  <canvas id="stars" width="512" height="512" ></canvas>
+
+  <div id="control_bar">
+    <button id="login_button" class="control_button"><i class="fas fa-user"></i></button>
+    <button id="location_button" class="control_button"><i class="fas fa-globe-europe"></i></button>
+    <button id="_button" class="control_button"><i class="fas fa-info-circle"></i></button>
+
+  </div>
+  
+  <!-- <h1 class="title">Orrery</h1> -->
+  
+</body>
+</html>

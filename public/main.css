@@ -1,3 +1,7 @@
+body {
+  font-family: "Iosevka Aile", "Helvetica Neue", helvetica-neue, Helvetica, sans-serif
+}
+
 h1 {
   color: red !important;
 }
@@ -8,4 +12,49 @@ h1 {
   top: 0;
   left: 0;
   box-sizing: border-box !important;
+  z-index: -512;
+}
+
+#hud {
+  position: fixed;
+  bottom: 2rem;
+  left: 2.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: solid 2px #0f0;
+}
+
+.hud_element {
+  background: white;
+  box-shadow: 0 0.2rem 0.4rem rgba(16,0,32,0.4);
+  border-radius: 1024px;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.4rem 1rem;
+}
+
+#control_bar {
+  justify-content: space-between;
+  width: 3.2rem;
+  padding: 0;
+  /* height: 12rem; */
+}
+
+.control_button {
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  color: rgba(0,0,0,0.6);
+  font-size: 1.4rem;
+  width: 3.2rem;
+  height: 3.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.control_button:hover {
+  color: rgba(0,0,0,0.4);
 }

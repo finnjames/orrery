@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "planetarium",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,6 +18,10 @@
   },
   "homepage": "https://github.com/radiolevity/orrery#readme",
   "dependencies": {
-    "bulma": "^0.9.1"
+    "@fortawesome/fontawesome-free": "^5.15.1",
+    "bulma": "^0.9.1",
+    "firebase": "^8.1.1",
+    "firebaseui": "^4.7.1",
+    "opencage-api-client": "^0.10.0"
   }
 }
