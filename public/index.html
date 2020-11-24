@@ -27,18 +27,19 @@
   
   <script src="https://unpkg.com/opencage-api-client"></script>
   
+  <script src="hyg.js" defer></script>
   <script src="app.js" defer></script>
   
   <link href="bulma.min.css" rel="stylesheet"/>
   <link href="all.css" rel="stylesheet"/> <!-- fontawesome -->
   <link href="main.css" rel="stylesheet"/>
+  <link rel="icon" href="favicon.ico">
   <title>Orrery - Finn James</title>
   
 </head>
 <body>
   
   <canvas id="stars" width="512" height="512" ></canvas>
-  
   
   <section id="hud">
     <div id="control_bar" class="hud_element">
@@ -47,30 +48,33 @@
       </section>
       
       <section id="signed_in" class="is-hidden">
-        <button id="user_details_control_button" class="control_button"><i class="fas fa-address-book fa-flip-horizontal"></i></button>
+        <button id="user_details_control_button" class="control_button"><i class="fas fa-id-badge"></i></button>
+        <button id="locations_control_button" class="control_button"><i class="fas fa-globe-europe"></i></button>
       </section>
       
-      <button id="location_control_button" class="control_button"><i class="fas fa-globe-europe"></i></button>
       <button id="info_control_button" class="control_button"><i class="fas fa-info-circle"></i></button>
       
     </div>
     <div class="hud_element">
-      <div id="local_time">09:00:00 EST</div>
+      <div id="location">chapel hill</div>
     </div>
   </section>
+  
+    <img id="logo" src="orrery.png" />
+    <img id="north" src="north.png" />
   
   <section id="sign_in_modal" class="modal">
     <div class="modal-background"></div>
     <div class="modal-card">
       <header class="modal-card-head">
-        <p class="modal-card-title">Create Account / Sign In</p>
+        <p class="modal-card-title">Create Account or Sign In</p>
         <button id="close_sign_in_modal" class="delete" aria-label="close"></button>
       </header>
       <section class="modal-card-body">
         <div class="field">
           <label class="label">Email</label>
           <div class="control">
-            <input id="email_input" class="input" type="email" placeholder="alovelace@gmail.com">
+            <input id="email_input" class="input" type="email" placeholder="mjgeller@gmail.com">
           </div>
         </div>
         <div class="field">
@@ -78,6 +82,7 @@
           <div class="control">
             <input id="password_input" class="input" type="password">
           </div>
+          <p id="password_alert" class="help is-danger is-hidden"></p>
         </div>
       </section>
       <footer class="modal-card-foot">
@@ -85,40 +90,69 @@
         <button id="sign_in_button" class="button">Sign in</button>
       </footer>
     </div>
-  </div>
-</section>
-
-<section id="user_details_modal" class="modal is-active">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Favorite Locations</p>
-      <button id="close_user_details_modal" class="delete" aria-label="close"></button>
-    </header>
-    <section class="modal-card-body">
-      <div id="user_details"></div>
-    </section>
-    <footer class="modal-card-foot">
-      <button id="sign_out_button" class="button">Sign out</button>
-    </footer>
-  </div>
-</div>
-</section>
-
-<section id="locations_modal">
-  <div class="field">
-    <label class="label">Place</label>
-    <div class="control">
-      <input id="place_input" class="input" type="text">
+  </section>
+  
+  <section id="user_details_modal" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">User Details</p>
+        <button id="close_user_details_modal" class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <div id="user_details"></div>
+      </section>
+      <footer class="modal-card-foot">
+        <button id="sign_out_button" class="button">Sign out</button>
+      </footer>
     </div>
-  </div>
+  </section>
   
-  <button id="add_favorite_location_button">Add favorite location</button>
+  <section id="locations_modal" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Locations</p>
+        <button id="close_locations_modal" class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <div class="content">
+          <p class="has-text-weight-bold">Favorite Locations</p>
+          <ol id="favorite_locations" type="1"></ol>
+        </div>
+        <div class="field">
+          <label class="label">Location name</label>
+          <div class="control">
+            <input id="place_input" class="input" type="text">
+          </div>
+        </div>
+      </section>
+      <footer class="modal-card-foot">
+        <button id="go_to_location_button" class="button is-success">Go to location</button>
+        <button id="add_favorite_location_button" class="button">Add new favorite location</button>
+      </footer>
+    </div>
+  </section>
   
-  <ul id="favorite_locations"></ul>
+  <section id="info_modal" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Info</p>
+        <button id="close_info_modal" class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <div class="content">
+          <p>Orrery displays the stars directly overhead any location on Earth. Create an account to get started!</p>
+          <p>This work licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a></p>
+          <p>Made by <a href="https://finnjames.dev">Finn James</a></p>
+          <p>Found a bug? Make an issue on <a href="https://github.com/radiolevity/orrery">GitHub</a></p>
+        </div>
+      </section>
+      <footer class="modal-card-foot">
+      </footer>
+    </div>
+  </section>
   
-</section>
-
-
 </body>
 </html>
