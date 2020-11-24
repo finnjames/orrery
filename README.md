@@ -2,6 +2,8 @@
 
 Repository for the [Orrery web app](https://radio-orrery.web.app/).
 
+[Link to slides](https://docs.google.com/presentation/d/1sLNor1iV4ogAS2lyOVl4ipEGtm04NAfFEvKSn-N59pg/edit?usp=sharing)
+
 ## Documentation
 
 Orrery is based on HTML Canvas, where it uses astronomical data and the Opencage geocoding API to generate a sliver of the sky above any point on earth. For the purposes of the app, it assumes moderate visibility and the sun being opposite the viewing angle. Powered by Google's Firebase and written in pure Javascript.
